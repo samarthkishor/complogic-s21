@@ -24,29 +24,29 @@ Feb 2  | Formal Languages                                       |
 Feb 4  | Types and Functions                                    | HW #1 IDE Set-up
 Feb 9  | Polymorphic Type Builders                              |
 Feb 11 | Polymorphic Types and Type Universes                   | HW #1 Due, HW #2 Out (Polymorphic Types, Universes, Functions) 
-Feb 16 | Sum of Product Types (option, sum, nat, list)          | HW #3 Out (Inductive Types, Higher-Order Functions)
-Feb 18 | Higher-Order Functions (filter, map, fold)             | HW #2 Due
-Feb 23 | Algebraic Structures, Typeclasses (functor, monoid)    | HW #3 Due, HW #4 Out (Algebraic Structures)
-Feb 25 | Algebraic Structures, Typeclasses (applicative, monad) |
-Mar 1  | Logic and Computation: Propositions as Types           | HW# #4 Due, HW #5 Out (Propositions and Proofs)
-Mar 3  | Dependent Types (Π and Σ Types in full generality)     |
-Mar 8  | Inductive Families (Eq, Other Relations)               | HW #5 Due, HW #6 Out (Logic and Computation: Proofs I)
-Mar 10 | Predicate Logic and Proofs I                           |
-Mar 15 | Predicate Logic and Proofs II                          | HW #6 Out, HW #7 Out (Logic and Computation: Proofs II)  
-Mar 17 | Predicate Logic and Proofs III                         |
-Mar 22 | REVIEW                                                 | HW #7 Due, Take-home EXAM out
-Mar 24 | Introduction to imperative languages                   | Take-home EXAM DUE
-Mar 29 |                                                        | 
-Mar 31 |                                                        |
-Apr 1  |                                                        | 
+Feb 16 | Sum of Product Types (sum, option)                     | 
+Feb 18 | Recursive Types (nat, list)                            | HW #2 Due, HW #3 Out (Recursive Types and Functions)
+Feb 23 | Inductive Families, Dependent Types (Π, Σ; tuples)     | 
+Feb 25 | Propositions as Types: Identity (Equality), Testing    | HW #3 Due, HW #4 Out (Propositions as Types)
+Mar 1  | Propositions as Types: True, False, Implies, Not       | 
+Mar 3  | Propositions as Types: And, Or, Forall, Exists         | HW# #4 Due, HW #5 Out (Dependent Types)
+Mar 8  | Propositions as Types: Induction Principles            | 
+Mar 10 |                                                        | HW #5 Due, HW #6 Out (Proofs I)
+Mar 15 |                                                        |  
+Mar 17 |                                                        | HW #6 Out, HW #7 Out (EXAM REVIEW) 
+Mar 22 |                                                        | HW #7 Due, Take-home EXAM out
+Mar 24 | Expressions languages, operational semantics           | EXAM DUE, HW #8 Out (Proofs III) 
+Mar 29 | Imperative languages, Hoare logic                      | 
+Mar 31 |                                                        | HW #8 DUE, HW #9 Out
+Apr 1  |   Higher-Order Functions I (compose, filter, map)                                                     | 
 Apr 6  |                                                        |
 Apr 8  |                                                        | 
 Apr 13 |                                                        |
 Apr 15 |                                                        | 
 Apr 20 | Type systems  (Tentative)                              |
-Apr 22 |                                                        | 
-Apr 27 |                                                        |
-Apr 29 |                                                        | 
+Apr 22 | Higher-Order Functions (fold, monoids)                                                       | 
+Apr 27 | Typeclasses I (default, has_map, monoids)                                                      |
+Apr 29 | Typeclasses II (applicative, monad)                                                      | 
 May 4  |                                                        |
 May 6  |  Lean 4                                                | 
 May 15 | EXAM 9AM-12PM or Takehome TBD                          |

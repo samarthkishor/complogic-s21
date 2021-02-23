@@ -19,7 +19,7 @@ Examples:
 -/
 
 -- We can express f in Lean like this
-def f : bool → nat
+def f : Π (b : bool), nat
 | ff := 0
 | tt := 1
 
@@ -85,9 +85,9 @@ example:
 This type represents the type 
 of function that takes a natural
 number n and returns a sequence
-of length n, *where the length
+*of length n*, where the length
 of the sequence is part of its 
-type*.
+*type*.
 
 Welcome to the type theory of
 Lean in its full generality. We
@@ -194,7 +194,7 @@ The codomain of our even identity function
 is the natural numbers but the range is
 just the set of even natural numbers.
 
-ran f = { y ∈ β | ∃ x ∈ α, (x, y ∈ R) }
+ran f = { y ∈ β | ∃ x ∈ α, (x, y) ∈ R) }
 -/
 
 
