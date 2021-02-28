@@ -5,7 +5,7 @@ that takes a a predicate function, p, of type
 parameter), and and that returns true (tt) if 
 and only if there is some value, v, in the list, 
 for which (p v) is true (tt). Your implementation
-must use map_list to convert the given list of α 
+must use list_map to convert the given list of α 
 values to a list of bool values, which it must
 then pass to a helper function, the job of which
 is to return true (tt) if and only there is some
@@ -19,7 +19,7 @@ that takes a a predicate function, p, of type
 parameter), and and that returns true (tt) if 
 and only if for every value, v, in the list, 
 (p v) is true (tt). Your implementation must 
-use map_list to convert the given list of α 
+use list_map to convert the given list of α 
 values to a list of bool values, which it must
 then pass to a helper function, the job of which
 is to return true (tt) if and only every value
