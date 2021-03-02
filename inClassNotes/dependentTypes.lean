@@ -6,6 +6,29 @@ is the type of tuples (of natural numbers) of
 length n. 
 -/
 
+
+-- nat ⨯ nat
+
+--  ℕ ℕ ℕ 
+-- (1,2,3)
+
+--  ℕ ⨯ (ℕ×ℕ) 
+-- (1,(2,3))
+
+-- (1, (2, (3, (4, 5))))
+
+/-
+Build a function that takes a natural number, n,
+and returns a TYPE: the type of tuples of length
+n.
+
+#check tuple
+
+nat → (nat ⨯ (nat ⨯ nat))
+
+tuple : Π (n : ℕ), _
+-/
+
 /-
 Reminder: prod is a type builder. Given
 types, α and β, prod α β (or α × β) is the
@@ -23,13 +46,24 @@ type.
 -/
 
 -- for each (n : nat), a type, (tuple n)
-def tuple : Π (n : nat), Type
+def tuple : nat → Type
 | 0 := unit
 | (n' + 1) := nat × (tuple n')
 
-#check tuple    -- ℕ → Type (*important*)
+/-
+0   tuple 0 = unit
+1   tuple 1 = nat ⨯ unit
+2   tuple 2 = nat ⨯ (nat ⨯ unit)
+3   tuple 3 = nat ⨯ (nat ⨯ (nat ⨯ unit))
+4   tuple 4 = nat ⨯ (tuple 3)
+...
+n   tuple (n' + 1) = nat ⨯ (tuple n')
+-/
 
+#check tuple  -- ℕ → Type (*important*)
 
+#check nat
+#check (prod nat nat)
 
 /-
 For values of n from 0 to 3, we get the 
@@ -52,7 +86,12 @@ def t0 : tuple 0 := unit.star
 def t1' : tuple 1 := prod.mk 1 unit.star
 def t1 : tuple 1 := (1, unit.star)  -- notation
 def t2 : tuple 2 := (1, 2, unit.star)
-def t3 : tuple 3 := (1, 2, 4, unit.star)
+def t3 : tuple 3 := (1, (2, (4, (unit.star))))
+
+--  (1, 2, unit.star)
+--  (1, (2, (unit.star)))
+-- prod.mk 1 (prod.mk 2 unit.star)
+
 
 /-
 The length is typechecked! The error
@@ -60,7 +99,7 @@ messages are cryptic, but, hey.
 -/
 
 def t3' : tuple 3 := (1, 2, 3, 4, unit.star) -- no
-def t3'' : tuple 3 := (1, 2, unit.star) -- no
+def t3'' : tuple 3 := (1, 2, 4, unit.star) -- no
 
 /-
 We could define a nicer concrete syntax that 
@@ -102,7 +141,10 @@ def nil := tuple 0
 def cons : Π {n : ℕ}, nat → tuple n → tuple (n + 1) 
 | n a t := prod.mk a t
 
-def head : Π (n : nat), tuple  n → option nat
+-- {2} 7 (1, 2, star) -> (7, (1, 2, star))
+-- #reduce cons 7 ((1, (2, unit.star)) : tuple 2)
+
+def head : Π {n : nat}, tuple  n → option nat
 | 0 _ := none
 | (n' + 1) (prod.mk h t) := some h
 
@@ -118,6 +160,7 @@ def append :
 def t6 := append t3 t3
 #reduce t6
 
+-- Type check catches bounds errors
 def foo (t : tuple 3) : nat := 0
 #check foo t2   -- No: type of t2 is tuple 2, not tuple 3
 
@@ -139,11 +182,14 @@ def zerotuple : Π (n : nat), tuple n
 | 0 := ()
 | (n' + 1) := (0, zerotuple n')
 
-#reduce zerotuple 4
 
+-- Π (n : nat), tuple n
+
+#reduce zerotuple 4
+#check zerotuple 4
 
 def nToNtuple (n : nat) : tuple n := zerotuple n
-
+#check nToNtuple
 
 def z0 := nToNtuple 0
 def z1 := nToNtuple 1
@@ -162,6 +208,13 @@ def z4 := nToNtuple 4
 #reduce z2
 #reduce z3
 #reduce z4
+
+-- General notation for dependently typed functions
+-- Π (a : A), B a 
+-- Π (n : ℕ), tuple n
+
+-- Π (a : A), B   -- special case where B doesn't depend on a 
+-- A → B 
 
 
 -- Ours is a dependently typed function
@@ -183,9 +236,11 @@ sigma.snd : Π {α : Type u} {β : α → Type v} (c : sigma β), β c.fstLean
 
 #check Σ (n : nat), tuple n   -- dependent pair type, ⟨ n, tuple n ⟩ 
 
-def s3 : Σ (n : nat), tuple n := ⟨ 3, (nToNtuple 3) ⟩ 
-def s5 : Σ (n : nat), tuple n := ⟨ 5, (nToNtuple 5) ⟩ 
+def s3 : Σ (n : nat), tuple n := sigma.mk 3 (1,2,3,unit.star) 
+def s5 : Σ (n : nat), tuple n := ⟨  5, (nToNtuple 5) ⟩ 
 def sx : Σ (n : nat), tuple n := ⟨ 5, (nToNtuple 4) ⟩ -- Cannot form, snd has wrong type
+
+#print sigma 
 
 #reduce sigma.fst s3
 #reduce sigma.snd s3
@@ -197,11 +252,9 @@ def sx : Σ (n : nat), tuple n := ⟨ 5, (nToNtuple 4) ⟩ -- Cannot form, snd h
 -- Identical types, varying in notation
 #check Σ (n : nat), tuple n 
 #check @sigma nat tuple
-#reduce sigma tuple
 
 #check sigma.mk 3 (nToNtuple 3)
 #check sigma.mk 4 (nToNtuple 4)
-
 #reduce sigma.mk 3 (nToNtuple 3)
 #reduce sigma.mk 4 (nToNtuple 4)
 
@@ -231,9 +284,13 @@ variable b : β a
 #reduce  (sigma.mk a b).2  -- b-/
 
 def evenNum : {n : nat // n%2 = 0} := ⟨ 2, rfl ⟩ 
+
+#reduce evenNum
+
 def oops : {n : nat // n%2 = 0} := ⟨ 3, rfl ⟩ 
 
 def evenId : {n : nat // n%2 = 0} → nat 
+
 | ⟨ val, proof_about_val ⟩ := val
 
 #eval evenId ⟨ 0, rfl ⟩ 

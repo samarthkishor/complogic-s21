@@ -314,7 +314,98 @@ universe variable for the list problem.
 
 -- ANSWER HERE
 
+<<<<<<< HEAD
 def default_nat : ℕ := nat.zero
 def default_bool : bool := bool.tt
 def default_list : Π (α : Type u), list α
 | _ := []
+=======
+-- C style
+def comp (g f : nat → nat) : nat → nat :=
+λ n, g (f n)
+
+-- lambda expressions
+def comp' : (nat → nat) → (nat → nat) → (nat → nat) :=
+λ g f, 
+  λ n, g (f n)
+
+-- by cases
+def comp'' : (nat → nat) → (nat → nat) → (nat → nat)
+| g f := λ (n : ℕ), g (f n)
+
+def square (n : nat) := n * n
+def double (n : nat) := 2 * n
+
+def myFavFunc := comp' square double
+#check myFavFunc
+#eval myFavFunc 5
+-- square (double 5)
+-- square 10
+-- 100
+
+def comp_nat_string : (nat → bool) → (string → nat) → (string → bool) := 
+λ (nb : ℕ → bool),
+  λ (sn : string → nat),
+    λ (s : string), 
+     nb (sn s)
+
+def isStringEmpty := comp_nat_string (λ (n : nat), n=0) string.length
+ 
+#eval isStringEmpty "Hello"
+#eval isStringEmpty ""
+      
+def yeah {α β γ : Type} (g : β → γ) (f : α → β) : (α → γ) :=
+λ (a : α), g (f a) 
+
+#reduce (yeah (λ (n : nat), (n=0 : bool)) string.length) ""
+#reduce (yeah square double) 5
+#reduce (yeah (λ (n : nat), (n=0 : bool)) string.length) ""
+
+
+/-
+Write a function, iterate, that 
+takes as its arguments (1) a function, 
+f, of type nat → nat, and (2) a natural
+number, n, and that returns a function 
+that takes an argument, (m : nat), and
+that returns the result of applying f 
+to m n times.
+-/
+
+def iterate : (nat → nat) → nat → (nat → nat) 
+| f 0 := λ (m : nat), m
+| f (n' + 1) := λ m, _
+
+
+#eval (iterate double 10) 1
+
+/-
+Write a polymorphic map_box function
+of type 
+
+Π (α β : Type u), 
+  (α → β) → box α → box β  
+  
+that takes a function, f, of type 
+(α → β), and a box, b, containing a 
+value of type α and that returns a 
+box containing that value transformed
+by the application of f.  
+
+-/
+universe u
+structure box (α : Type u) : Type u :=
+mk :: (val : α)
+
+def map_box : Π {α β : Type u}, 
+  (α → β) → (box α → box β) 
+| _ _ f b := box.mk (f b.val)
+
+def b0 := box.mk 0
+
+def f := nat.succ
+
+def q := map_box f
+
+#reduce q b0
+>>>>>>> 0642ed288ede8af9073713f33ee6286eddab5e70

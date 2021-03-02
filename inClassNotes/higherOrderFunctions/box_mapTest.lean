@@ -7,8 +7,12 @@ def map_box_nat_nat
   (f : nat → nat)
   (b : box nat) :
   box nat :=
-  _
+  box.mk (f (b.val))
 
+def box_inc := map_box_nat_nat (nat.succ)
+#check box_inc 
+
+#reduce box_inc (box.mk 5)
 -- almost the most general case
 
 universes u₁ u₂
@@ -18,7 +22,7 @@ def map_box
   {β : Type u₂}
   (f : α → β)
   (b : box α) :
-  box β :=
+  box β := 
 box.mk (f b.val) 
 
 -- exercise: make it work for logical types

@@ -15,7 +15,14 @@ the field who value it projects
 universe u
 
 structure box (α : Type u) : Type u :=
-(val : α)
+mk :: (val : α)
+
+def b3 := box.mk 3
+
+#reduce b3
+
+#reduce (box.val b3)
+#reduce b3.val
 
 
 end hidden

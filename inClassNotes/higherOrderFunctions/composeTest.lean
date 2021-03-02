@@ -21,7 +21,7 @@ through inc, then send that result
 "to the left" through sqr.
 -/
 
--/
+
 def sqrThenInc (n : nat) := inc (sqr n)
 /-
   26 <-- inc <-- sqr <-- 5
