@@ -9,7 +9,7 @@ def map_option_nat_nat :
   option nat 
 -- by case analysis on the option
 | f option.none := option.none
-| f (option.some v) := option.some (_) 
+| f (option.some v) := option.some (f v) 
 
 -- almost the most general case
 
