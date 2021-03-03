@@ -177,13 +177,17 @@ def baz : ev 5 → empty :=
 _
 
 /- 8. Define evdp to be a sigma (dependent 
-pair) type, avalue of which has a natural
+pair) type, a value of which has a natural
 number, n,  as its first component, and a 
 value of type, ev n, as its second. Then 
 define evp0, evp2, and evp4 to be values
 of this type, whose first elements are,
 respectively, 0, 2, and 4.
 -/
+
+def evdp := Σ (n : nat), ev n
+
+def evp0 : evdp := ⟨ 2, _ ⟩ 
 
 -- Your answers here
 
