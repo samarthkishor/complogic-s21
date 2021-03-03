@@ -64,9 +64,9 @@ def ev_str : string → bool := λ s, (s.length % 2 = 0)
 
 def sList := ["Hello!, ", "Lean"]
 
-def fold'' tt band sList
+def fold'' tt band sList                        -- Wrong
 
-#eval fold'' tt band "Hello"::"Lean"::list.nil
+#eval fold'' tt band "Hello"::"Lean"::list.nil  -- Wrong
 
 /-
 band (ev_str "Hello") (fold'' tt band "Lean"::list.nil)
@@ -156,4 +156,3 @@ A PROBLEM REARS
 def all_even_string_bad : list string → bool :=
 fun (l : list string), foldr ff (mk_reducer ev_str band) l
 -- EXERCISE: What's the bug here? There is one.
-
