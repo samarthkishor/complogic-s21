@@ -234,9 +234,3 @@ structure monoid (M : Type u) : Type u :=
 (one_mul : ∀ (a : M), 1 * a = a)
 (mul_one : ∀ (a : M), a * 1 = a)
 -/
-
-axiom ev : nat → bool
-
-inductive evdp : Σ (n : ℕ ), ev n → Type
-| evdp_base : evdp ⟨ 0, ev 0 ⟩
-| evdp_ind {n: ℕ} (evdpn : evdp n) : evdp ⟨ n+2, ev n+2 ⟩
