@@ -85,4 +85,4 @@ list α →
 β
 -/
 
--- That's T-shirt material right there :-)
+-- That's T-shirt material right there
