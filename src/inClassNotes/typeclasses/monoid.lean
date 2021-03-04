@@ -57,9 +57,8 @@ multiplicative identity value for any type for
 which the operator is overloaded. For example, 
 suppose we want this behavior:
 
-#eval ident nat    -- expect 0
-#eval ident bool   -- expect ff
-eval ident string  -- expect ""
+#eval ident nat    -- expect 1
+#eval ident bool   -- expect tt
 -/
 
 /-
@@ -177,6 +176,7 @@ which it can be applied.
 In our simple example, the ident "operator" returns
 a default value
 -/
+
 /-
 @[class]
 structure has_mul (α : Type u) := 
@@ -208,23 +208,14 @@ class has_mul (α : Type u) := (mul : α → α → α)
 (mul_assoc : ∀ a b c : G, a * b * c = a * (b * c))
 -/
 
-#check @semigroup
 
-universe u
-
-@[class]
-structure semigroup' (G : Type u) : Type u :=
-(mul : G → G → G)
-(mul_assoc : ∀ (a b c_1 : G), (a * b) * c_1 = a * b * c_1)
-
--- A semigroup is a type with an associative (*).
-
-#check semigroup
 
 /-
 A monoid is a semigroup 
 with an element 1 
 such that 1 * a = a * 1 = a.
+-/
+universe u 
 
 @[class]
 structure monoid (M : Type u) : Type u :=
@@ -233,4 +224,3 @@ structure monoid (M : Type u) : Type u :=
 (one : M)
 (one_mul : ∀ (a : M), 1 * a = a)
 (mul_one : ∀ (a : M), a * 1 = a)
--/
