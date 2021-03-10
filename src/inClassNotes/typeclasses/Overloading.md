@@ -9,7 +9,7 @@ leading into generalized algebraic structures.
 Let's start by discussing arithmetic addition
 in a language such as C or Java. The salient
 point here is that we can write expressions,
-such as the follow, both of which use the +
+such as the following, both of which use the +
 operator, but that have different types.
 
 1   + 1
@@ -26,7 +26,7 @@ operator.
 ## Ad Hoc Polymorphism; Operator Overloading
 
 This example illustrates what we call ad hoc
-polymorphism, sand pecifically in this case what
+polymorphism, and specifically in this case what
 we call "operator overloading". The term means
 that the same operator name or symbol (here +)
 is bound to different meanings depending on 
