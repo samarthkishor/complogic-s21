@@ -156,26 +156,53 @@ To get at the mul function of the monoid that we need here,
 we refer to it through the typeclass, up the inheritance
 hierarchy, that defines it directly: here, mul_groupoid.
 -/
-def mul_foldr 
+def mul_monoid_foldr 
   {α : Type u} 
   [mul_monoid α] 
   :
   list α → α 
 | [] := has_one.one
-| (h::t) := mul_groupoid.mul h (mul_foldr t)  
+| (h::t) := mul_groupoid.mul h (mul_monoid_foldr t)  
 
 -- Additive version of the same foldr function.
-def add_foldr 
+def add_monoid_foldr 
   {α : Type u} 
   [add_monoid α] 
   :
   list α → α 
 | [] := has_zero.zero
-| (h::t) := add_groupoid.add h (add_foldr t)  
+| (h::t) := add_groupoid.add h (add_monoid_foldr t)  
 
-#eval mul_foldr [1,2,3,4,5]
-#eval add_foldr [1,2,3,4,5]   -- missing instance above
+#eval mul_monoid_foldr [1,2,3,4,5]
+#eval add_monoid_foldr [1,2,3,4,5]   -- missing instance above
 
+
+/-
+The group, D4.
+-/
+
+inductive dihedral_4 : Type
+| r0    -- 0 quarter turns    r: rotation
+| r1    -- 1 quarter turn
+| r2    -- 2 quarter turns
+| r3    -- 3 quarter turns
+| sr0    -- flip horizontal   s: reflection
+| sr1    -- flip ne/sw
+| sr2    -- flip vertical
+| sr3    -- flip nw/se
+
+open dihedral_4
+
+def e := r0
+
+def mul : 
+  dihedral_4 → dihedral_4 → dihedral_4  -- closed
+| _ _ := r0 
+
+/-
+r^n is still a rotation
+sr^n and r^ns are reflections
+-/
 
 end alg
 
