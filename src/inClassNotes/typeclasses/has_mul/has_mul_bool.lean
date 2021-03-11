@@ -12,7 +12,7 @@ values for "its" associated type.
 Create a single typeclass instance (structure). It 
 gets registered into a database of such instsances.
 -/
-instance ident_bool : has_mul bool := ⟨ band ⟩ 
+instance has_mul_bool : hidden.has_mul bool := ⟨ band ⟩ 
 /-
 This code would typically be co-located witht he code
 that defines the bool type, because this instance 
@@ -30,7 +30,7 @@ value stored as a identity for bool multiplication
 (which we take to be performed by band, by the way). 
 -/
 
-def my_band [b : has_mul bool] := b.mul
+def my_band [b : hidden.has_mul bool] := b.mul
 
 -- as expected ...
 #check my_band

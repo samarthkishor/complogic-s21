@@ -1,5 +1,4 @@
-# Ad Hox Polymorphism; Overloading; Typeclasses
-
+# Ad Hoc Polymorphism; Overloading; Typeclasses
 
 ## Introduction
 
@@ -12,8 +11,8 @@ point here is that we can write expressions,
 such as the follow, both of which use the +
 operator, but that have different types.
 
-1   + 1
-1.0 + 1.0
+- 1   + 1
+- 1.0 + 1.0
 
 The first plus really means "the plus function
 defined for int values, while the second means
