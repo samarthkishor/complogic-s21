@@ -198,28 +198,7 @@ def e := r0
 def d4_mul : 
   dihedral_4 → dihedral_4 → dihedral_4  -- closed
 := 
-begin 
-assume a1 a2,   -- assume (a1 a2: dihedral_4)
-cases a1,       -- define func by cases for a1
-                -- and for each, by cases for a2
-cases a2,       -- for a1 = r0
-exact r0,
-exact r1,
-exact r2,
-exact r3,
-exact sr0,
-exact sr1,
-exact sr2,
-exact sr3, 
-
-cases a2,     -- for a1=r1
-exact r1,
-exact r2,
-exact r3,
-exact r0,
-sorry
-
-end
+_
 
 /-
 r^n is still a rotation
