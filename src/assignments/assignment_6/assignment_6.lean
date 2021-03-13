@@ -264,8 +264,8 @@ instance string_to_nat_coe : _ :=
 _
 
 -- Test cases
-#eval needs_bool ("Hello")  -- expect tt
-#eval needs_bool ("")  -- expect ff
+#eval needs_bool "Hello"  -- expect tt
+#eval needs_bool ""  -- expect ff
 
 /-
 Good job!
