@@ -1,9 +1,7 @@
-import algebra
-
--- test import
-#check semigroup
-#check has_one
-#check monoid
+/-
+Using typeclasses to formalize basic algebraic structures,
+including notably the "rules" defining such structures. 
+-/
 
 namespace alg
 
@@ -43,7 +41,7 @@ A semigroup is a groupoid in which the operator is *associative*
 -/
 @[class]
 structure mul_semigroup (α : Type u) extends mul_groupoid α :=
-(assoc : ∀ (a b c_1 : α), mul a (mul b c_1) = mul (mul a b) c_1)
+(assoc : ∀ (a b c : α), mul a (mul b c) = mul (mul a b) c)
 
 @[class]
 structure add_semigroup (α : Type u) extends add_groupoid α :=
@@ -63,7 +61,7 @@ structure add_monoid (α : Type u) extends add_semigroup α, has_zero α :=
 (ident_right: ∀ (a: α), add a zero = a)
 
 /-
-A group is a mul_semigroup in which every element has an inverse
+A group is a mul_monoid in which every element has an inverse
 -/
 @[class]
 structure mul_group (α : Type u) extends mul_monoid α :=
@@ -107,19 +105,21 @@ will be soon.
 -/
 instance has_one_nat : has_one nat := ⟨ 1 ⟩ 
 instance mul_groupoid_nat : mul_groupoid nat := ⟨ nat.mul ⟩ 
-instance mul_semigroup_nat : mul_semigroup nat := ⟨ sorry ⟩ 
-instance mul_monoid_nat : mul_monoid nat := ⟨ sorry , sorry⟩ 
+instance mul_semigroup_nat : mul_semigroup nat := ⟨ _ ⟩ 
+instance mul_monoid_nat : mul_monoid nat := ⟨ _ , _ ⟩ 
 
 instance has_zero_nat : has_zero nat := ⟨ 0 ⟩ 
 instance add_groupoid_nat : add_groupoid nat := ⟨ nat.add ⟩ 
-instance add_semigroup_nat : add_semigroup nat := ⟨ sorry ⟩ 
-instance add_monoid_nat : add_monoid nat := ⟨ sorry , sorry⟩ 
+instance add_semigroup_nat : add_semigroup nat := ⟨ _ ⟩ 
+instance add_monoid_nat : add_monoid nat := ⟨ _ , _ ⟩ 
+
+-- instance mul_group_nat : mul_group nat := ⟨ _, _ ⟩ 
 
 /-
 ℕ isn't a group under either add or mul! No inverses. 
 ℤ is an additive group but not a multiplicative group.
-ℚ is an additive group; Q-{0} is a multiplicative group.
-Q is thus a field. ℝ is a field in the same way. So is ℂ.
+ℚ is an additive group; ℚ-{0} is a multiplicative group.
+ℚ is thus a field. ℝ is a field in the same way. So is ℂ.
 -/ 
 
 
@@ -182,7 +182,7 @@ The group, D4.
 -/
 
 inductive dihedral_4 : Type
-| r0    -- 0 quarter turns    r: rotation
+| r0  -- 0 quarter turns    r: rotation
 | r1    -- 1 quarter turn
 | r2    -- 2 quarter turns
 | r3    -- 3 quarter turns
@@ -195,14 +195,43 @@ open dihedral_4
 
 def e := r0
 
-def mul : 
+def d4_mul : 
   dihedral_4 → dihedral_4 → dihedral_4  -- closed
-| _ _ := r0 
+:= 
+begin 
+assume a1 a2,   -- assume (a1 a2: dihedral_4)
+cases a1,       -- define func by cases for a1
+                -- and for each, by cases for a2
+cases a2,       -- for a1 = r0
+exact r0,
+exact r1,
+exact r2,
+exact r3,
+exact sr0,
+exact sr1,
+exact sr2,
+exact sr3, 
+
+cases a2,     -- for a1=r1
+exact r1,
+exact r2,
+exact r3,
+exact r0,
+sorry
+
+end
 
 /-
 r^n is still a rotation
 sr^n and r^ns are reflections
 -/
+
+instance d4_has_one : has_one dihedral_4 := ⟨ e ⟩ 
+instance d4_has_groupoid : mul_groupoid dihedral_4 := ⟨ d4_mul ⟩
+instance d4_has_semigroup : mul_semigroup dihedral_4 := ⟨ sorry ⟩
+instance d4_has_monoid : mul_monoid dihedral_4 := ⟨ sorry, sorry ⟩ 
+
+#reduce mul_monoid_foldr [r3, r1, sr3, r2]
 
 end alg
 

@@ -30,9 +30,9 @@ Feb 23 | Inductive Families, Dependent Types (Π, Σ; tuples)     |
 Feb 25 | Higher-order Functions I (compose, filter, map)        | HW #3 Due, HW #4 Out (Higher-Order Functions)
 Mar 2  | Higher-order Functions II (foldr)                      | 
 Mar 4  | Typeclasses: Ad Hoc Polymorphism, Overloading          | HW# #4 Due, HW #5 Out (Dependent Types, Typeclasses)
-Mar 9  | Propositions as Types: Induction Principles            | 
-Mar 11 |                                                        | HW #5 Due, HW #6 Out (Proofs I)
-Mar 16 | Propositions as Types: True, False, Implies, Not                                                      |  
+Mar 9  | Typeclasses and Abstract Algebra                       | 
+Mar 11 | Typeclasses and Applications                           | HW #5 Due, HW #6 Out (Proofs I)
+Mar 16 | Propositions as Types                                  |  
 Mar 19 |                                                        | HW #6 Out, HW #7 Out (EXAM REVIEW) 
 Mar 23 |                                                        | HW #7 Due, Take-home EXAM out
 Mar 24 | Expressions languages, operational semantics           | EXAM DUE, HW #8 Out (Proofs III) 

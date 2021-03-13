@@ -65,7 +65,7 @@ def option_map {α β : Type u} :
 | f (some a) := some (f a) 
 
 /-
-Now comes a key insight: we can characterize *map* 
+Now comes a key insight: we can characterize *fmap* 
 as an overloaded operator, that takes a function and 
 *some kind of* container (list, box, option, etc.),
 and that then maps that function over the contents of 
@@ -76,7 +76,7 @@ the values in the original "context/container". We
 can now really make sense of the type of any such 
 overloaded "map" function:
 
-(map : Π {α β : Type u}, (α → β) → c α → c β)
+(fmap : Π {α β : Type u}, (α → β) → c α → c β)
 
 Given types α and β, a function, f : α → β, and
 a "container/context", (c α) -- such as list α 
