@@ -117,7 +117,7 @@ open alg
 
 
 /-
-B. Complete the givben application of 
+B. Complete the given application of 
 mul_map_reduce with a lambda expression 
 to compute the product of the non-zero 
 values in the list 
@@ -214,13 +214,14 @@ and from any non-zero value to true.
 Here's the has_coe (has coercion) typeclass as
 defined in Lean's libraries. As you can see, a
 coercion is really just a function, coe, from 
-one type to another.
+one type to another, associated with the pair 
+of those two types.
 
 class has_coe (a : Sort u) (b : Sort v) :=
 (coe : a → b)
 
 A. We provide a simple function, needs_bool, 
-that takes a bool value (and just returns it). 
+that takes a bool value and just returns it. 
 Your job is to allow this function to be 
 applied to any nat value by defining a new
 coercion from nat to bool. 
@@ -230,7 +231,7 @@ converts any nat, n, to a bool, by the rule that
 zero goes to false and any other nat goes to tt. 
 Then define an instance of the has_coe typeclass
 to enable coercions from nat to bool. You should
-called it nat_to_bool_coe. When you're done the
+call it nat_to_bool_coe. When you're done the
 test cases below should work.
 -/
 
@@ -268,5 +269,10 @@ _
 #eval needs_bool ""  -- expect ff
 
 /-
-Good job!
+Do you see how the coercions are being chained,
+aka, composed, automatically?
 -/
+
+--  Good job!
+
+-- (c) Kevin Sullivan, 2021
