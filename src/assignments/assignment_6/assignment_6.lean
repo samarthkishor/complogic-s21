@@ -274,5 +274,3 @@ aka, composed, automatically?
 -/
 
 --  Good job!
-
--- (c) Kevin Sullivan, 2021
