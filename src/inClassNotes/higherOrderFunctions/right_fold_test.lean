@@ -1,4 +1,8 @@
 /-
+In this file, I explain why the foldr function has
+such a funny-looking type. 
+
+
 The following examples have much in common
 
 - Reducing a list of strings to a bool that indicates whether all of them have a given property
@@ -64,9 +68,9 @@ def ev_str : string → bool := λ s, (s.length % 2 = 0)
 
 def sList := ["Hello!, ", "Lean"]
 
-def fold'' tt band sList
+def fold'' tt band sList  -- No
 
-#eval fold'' tt band "Hello"::"Lean"::list.nil
+#eval fold'' tt band "Hello"::"Lean"::list.nil -- No
 
 /-
 band (ev_str "Hello") (fold'' tt band "Lean"::list.nil)

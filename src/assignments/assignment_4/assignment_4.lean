@@ -280,8 +280,8 @@ def evp4 : evdp := ⟨ 4, ev4 ⟩
 
 
 /- 9. Write a function, mkEvp, that takes
-a argument, n, of type nat, implicitly, and
-an argument, nEv of type, ev n, and that
+a argument, mn, of type nat, iplicitly, and
+an argument, nEv ot type, ev n, and that
 returns a value of type evdp (from the last
 problem). Then briefly answer the question,
 in what sense does mkEvp have a dependent
